@@ -2,7 +2,7 @@ FROM alpine:3.3
 MAINTAINER Alfred Gutierrez <alf.g.jr@gmail.com>
 
 ARG NGINX_VERSION=1.11.10
-ARG NGINX_RTMP_VERSION=1.1.11
+ARG NGINX_RTMP_VERSION=dev
 ARG FFMPEG_VERSION=3.2.4
 
 EXPOSE 1935
@@ -21,8 +21,8 @@ RUN cd /tmp && wget http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz \
   && rm nginx-${NGINX_VERSION}.tar.gz
 
 # Get nginx-rtmp module.
-RUN cd /tmp && wget https://github.com/arut/nginx-rtmp-module/archive/v${NGINX_RTMP_VERSION}.tar.gz \
-  && tar zxf v${NGINX_RTMP_VERSION}.tar.gz && rm v${NGINX_RTMP_VERSION}.tar.gz
+RUN cd /tmp && wget https://github.com/arut/nginx-rtmp-module/archive/${NGINX_RTMP_VERSION}.tar.gz \
+  && tar zxf ${NGINX_RTMP_VERSION}.tar.gz && rm ${NGINX_RTMP_VERSION}.tar.gz
 
 # Compile nginx with nginx-rtmp module.
 RUN cd /tmp/nginx-${NGINX_VERSION} \
